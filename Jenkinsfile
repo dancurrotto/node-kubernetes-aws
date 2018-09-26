@@ -11,6 +11,7 @@ pipeline {
                 sh 'echo Desired State Configuration...'
                 git url: 'https://github.com/dcurrotto/node-jenkins-pl-ec2.git'
             }
+        }
         stage('Build'){
             steps{
                 sh 'echo building...'
