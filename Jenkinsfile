@@ -19,18 +19,17 @@ pipeline {
                 
                 sh 'echo $WORKSPACE'
                 sh 'echo $AWS_ACCESS_KEY_ID'
-                sh 'echo $PATH'                
+                sh 'echo $PATH'   
+                
+                sh 'echo Tell kops where to find its config and state.'
+                sh 'export KOPS_STATE_STORE=s3://valuesource-kubernetes'
                 
                 sh 'echo Configuring AWS...'
                 sh '~/.local/bin/aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID'
                 sh '~/.local/bin/aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY'
                 sh '~/.local/bin/aws configure set region us-east-2'
-                sh '~/.local/bin/aws configure set output json'     
+                sh '~/.local/bin/aws configure set output json'                 
                 
-                
-                sh 'echo Tell kops where to find its config and state.'
-                sh 'export KOPS_STATE_STORE=s3://valuesource-kubernetes'
-
                 sh 'kops get value-source-cloud.com > exists'
                 
                 //Set permissions on exists file.
