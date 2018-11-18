@@ -44,7 +44,7 @@ pipeline {
                               
                 
                 sh 'echo Create the cluster.'
-                //sh 'kops create cluster --name value-source-cloud.com --state s3://valuesource-kubernetes --zones us-east-2a --node-count=1 --yes'
+                sh 'kops create cluster --name value-source-cloud.com --state s3://valuesource-kubernetes --zones us-east-2a --node-count=1 --yes'
                
                
                
