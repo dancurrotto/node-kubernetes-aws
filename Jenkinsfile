@@ -32,7 +32,7 @@ pipeline {
                 
                 //sh 'kops get value-source-cloud.com --state s3://valuesource-kubernetes > exists'
                 
-                sh 'kops get value-source-cloud.com --state s3://valuesource-kubernetes'
+                //sh 'kops get value-source-cloud.com --state s3://valuesource-kubernetes'
                 
                 //Set permissions on exists file.
                 //sh 'chmod 777 "$WORKSPACE/exists"'
