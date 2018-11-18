@@ -36,8 +36,10 @@ pipeline {
                 sh 'chmod 777 "$WORKSPACE/exists"'
                 
                 //Grab the value from exists.
-                sh 'does_exist=$(head -1 $WORKSPACE/exists) && echo $does_exist' 
+                sh 'does_exist=$(head -1 $WORKSPACE/exists) && echo $(python getCusterExists.py $does_exist)'    
                 
+                
+                              
                 
                 sh 'echo Create the cluster.'
                 //sh 'kops create cluster --name value-source-cloud.com --state s3://valuesource-kubernetes --zones us-east-2a --node-count=1 --yes'
