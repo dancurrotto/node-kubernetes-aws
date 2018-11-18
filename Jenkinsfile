@@ -6,15 +6,10 @@ pipeline {
                 ETAG=''
     }
     stages {
-        stage('DesiredState'){
-            steps{
-                sh 'echo Desired State Configuration...'
-                git url: 'https://github.com/dcurrotto/node-jenkins-pl-ec2.git'
-            }
-        }
         stage('Build'){
             steps{
                 sh 'echo building...'
+                git url: 'https://github.com/dcurrotto/node-jenkins-pl-ec2.git'
             }
         }
         stage('Deploy') {
@@ -22,14 +17,12 @@ pipeline {
                 
                 sh 'echo $WORKSPACE'
                 sh 'echo $AWS_ACCESS_KEY_ID'
-                sh '~/.local/bin/aws --version'
+                sh 'echo $PATH'
                 sh '~/.local/bin/aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID'
                 sh '~/.local/bin/aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY'
                 sh '~/.local/bin/aws configure set region us-east-2'
                 sh '~/.local/bin/aws configure set output json'                
                 
-                
-                /*
                 sh '~/.local/bin/aws deploy delete-deployment-group --application-name node-jenkins-pl-ec2 --deployment-group-name node-jenkins-pl-ec2-dg'
                 sh '~/.local/bin/aws deploy delete-application --application-name node-jenkins-pl-ec2'
                 sh '~/.local/bin/aws deploy create-application --application-name node-jenkins-pl-ec2'
@@ -48,7 +41,6 @@ pipeline {
                 sh 'e_tag=$(head -1 $WORKSPACE/eTagResult) && echo $(python getCleanedAws.py $e_tag)'                
                 
                 sh 'cleanedE_tag=$(head -1 $WORKSPACE/cleanedAwsValue) && echo $(~/.local/bin/aws deploy create-deployment --application-name node-jenkins-pl-ec2 --s3-location bucket=vs-code-deploy-dev,key=njpe.zip,bundleType=zip,eTag=$cleanedE_tag --deployment-group-name node-jenkins-pl-ec2-dg --deployment-config-name CodeDeployDefault.OneAtATime --description test --file-exists-behavior OVERWRITE --region us-east-2)'               
-                */
                 
             }
             
