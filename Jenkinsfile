@@ -30,7 +30,7 @@ pipeline {
                 sh '~/.local/bin/aws configure set region us-east-2'
                 sh '~/.local/bin/aws configure set output json'                 
                 
-                sh 'kops get value-source-cloud.com > exists'
+                sh 'kops get value-source-cloud.com --state s3://valuesource-kubernetes > exists'
                 
                 //Set permissions on exists file.
                 sh 'chmod 777 "$WORKSPACE/exists"'
