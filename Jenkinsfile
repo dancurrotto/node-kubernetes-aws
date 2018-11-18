@@ -29,10 +29,10 @@ pipeline {
                 
                 
                 sh 'echo Tell kops where to find its config and state.'
-                export KOPS_STATE_STORE=s3://valuesource-kubernetes
+                sh 'export KOPS_STATE_STORE=s3://valuesource-kubernetes'
 
                 sh 'echo Create the cluster.'
-                kops create cluster --name value-source-cloud.com --state s3://valuesource-kubernetes --zones us-east-2a --node-count=1 --yes
+                sh 'kops create cluster --name value-source-cloud.com --state s3://valuesource-kubernetes --zones us-east-2a --node-count=1 --yes'
                
                 //Give it some time and then validate.  Do a loop or something similar.
                 //kops validate cluster --name value-source-cloud.com --state s3://valuesource-kubernetes
