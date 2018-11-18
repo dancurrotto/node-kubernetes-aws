@@ -18,6 +18,9 @@ pipeline {
                 sh 'echo $WORKSPACE'
                 sh 'echo $AWS_ACCESS_KEY_ID'
                 sh 'echo $PATH'
+                
+                
+                /*
                 sh '~/.local/bin/aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID'
                 sh '~/.local/bin/aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY'
                 sh '~/.local/bin/aws configure set region us-east-2'
@@ -40,7 +43,8 @@ pipeline {
                 //Grab the value from eTagResult and pass it to getCleanedAws.py
                 sh 'e_tag=$(head -1 $WORKSPACE/eTagResult) && echo $(python getCleanedAws.py $e_tag)'                
                 
-                sh 'cleanedE_tag=$(head -1 $WORKSPACE/cleanedAwsValue) && echo $(~/.local/bin/aws deploy create-deployment --application-name node-jenkins-pl-ec2 --s3-location bucket=vs-code-deploy-dev,key=njpe.zip,bundleType=zip,eTag=$cleanedE_tag --deployment-group-name node-jenkins-pl-ec2-dg --deployment-config-name CodeDeployDefault.OneAtATime --description test --file-exists-behavior OVERWRITE --region us-east-2)'               
+                sh 'cleanedE_tag=$(head -1 $WORKSPACE/cleanedAwsValue) && echo $(~/.local/bin/aws deploy create-deployment --application-name node-jenkins-pl-ec2 --s3-location bucket=vs-code-deploy-dev,key=njpe.zip,bundleType=zip,eTag=$cleanedE_tag --deployment-group-name node-jenkins-pl-ec2-dg --deployment-config-name CodeDeployDefault.OneAtATime --description test --file-exists-behavior OVERWRITE --region us-east-2)'    
+                */
                 
             }
             
