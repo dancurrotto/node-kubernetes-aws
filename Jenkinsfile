@@ -30,26 +30,13 @@ pipeline {
                 sh '~/.local/bin/aws configure set region us-east-2'
                 sh '~/.local/bin/aws configure set output json'                 
                 
-                //sh 'kops get value-source-cloud.com --state s3://valuesource-kubernetes > exists'
-                
-                //sh 'kops get value-source-cloud.com --state s3://valuesource-kubernetes'
-                
-                //Set permissions on exists file.
-                //sh 'chmod 777 "$WORKSPACE/exists"'
-                
-                //Grab the value from exists.
-                // sh 'does_exist=$(head -1 $WORKSPACE/exists) && echo $(python getClusterExists.py $does_exist)'    
-                
-                //sh 'cluster_doesExist=$(head -1 $WORKSPACE/clusterExistsValue) && echo $(if($cluster_doesExist!=-1){kops create cluster --name value-source-cloud.com --state s3://valuesource-kubernetes --zones us-east-2a --node-count=1 --yes}'  
-                              
-                
-                sh 'echo Create the cluster.'
-                sh 'kops create cluster --name value-source-cloud.com --state s3://valuesource-kubernetes --zones us-east-2a --node-count=1 --yes'
                
-               
-               
-                //Give it some time and then validate.  Do a loop or something similar.
-                //kops validate cluster --name value-source-cloud.com --state s3://valuesource-kubernetes
+                sh 'kubectl run my-nginx --image=nginx --replicas=1 --port=80'
+                
+                sh 'kubectl expose deployment my-nginx --port=80 --type=LoadBalancer'
+                
+                sh 'kubectl get service -o wide'
+                
             }
             
         }
