@@ -30,12 +30,13 @@ pipeline {
                 sh '~/.local/bin/aws configure set region us-east-2'
                 sh '~/.local/bin/aws configure set output json'                 
                 
+                sh 'kubectl apply -f deployment.yaml'
                
-                sh 'kubectl run my-nginx --image=nginx --replicas=1 --port=80'
+                // sh 'kubectl run my-nginx --image=nginx --replicas=1 --port=80'
                 
-                sh 'kubectl expose deployment my-nginx --port=80 --type=LoadBalancer'
+                // sh 'kubectl expose deployment my-nginx --port=80 --type=LoadBalancer'
                 
-                sh 'kubectl get service -o wide'
+                // sh 'kubectl get service -o wide'
                 
             }
             
