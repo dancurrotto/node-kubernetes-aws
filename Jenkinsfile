@@ -30,7 +30,7 @@ pipeline {
                 sh '~/.local/bin/aws configure set region us-east-2'
                 sh '~/.local/bin/aws configure set output json'                 
                 
-                sh 'kubectl apply -f ./deployment.yaml'
+                sh 'kubectl apply -f deployment.yaml'
                
                 // sh 'kubectl run my-nginx --image=nginx --replicas=1 --port=80'
                 
