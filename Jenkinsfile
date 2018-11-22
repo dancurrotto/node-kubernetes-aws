@@ -11,7 +11,7 @@ pipeline {
                 sh 'echo This build machine or docker container needs Kubectl, Kops, and aws cli installed.'
                 sh 'echo This build machine has to have ssh keys generated using ssh-keygen -t rsa .'
                 sh 'echo building...'
-                git url: 'https://github.com/dcurrotto/node-jenkins-pl-ec2.git'
+                git url: 'https://github.com/dcurrotto/node-kubernetes-aws.git'
             }
         }
         stage('Deploy') {
